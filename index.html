@@ -12,7 +12,7 @@
   <!-- TODO: Add 5-10 relevant keywords for your research area -->
   <meta name="keywords" content="KEYWORD1, KEYWORD2, KEYWORD3, Appearance and texture representations, Texture enhancement, Neural networks">
   <!-- TODO: List all authors -->
-  <meta name="author" content="Anonymous Authors">
+  <meta name="author" content="Ziteng Lu, Yushuang Wu, Chongjie Ye, Yuda Qiu, Jing Shao, Xiaoyang Guo, Jiaqing Zhou, Tianlei Hu, Kun Zhou, Xiaoguang Han">
   <meta name="robots" content="index, follow">
   <meta name="language" content="English">
   
@@ -32,7 +32,7 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="TexSpot - Research Preview">
   <meta property="article:published_time" content="2026-02-12T00:00:00.000Z">
-  <meta property="article:author" content="Anonymous Authors">
+  <meta property="article:author" content="Ziteng Lu, Yushuang Wu, Chongjie Ye, Yuda Qiu, Jing Shao, Xiaoyang Guo, Jiaqing Zhou, Tianlei Hu, Kun Zhou, Xiaoguang Han">
   <meta property="article:section" content="Research">
   <meta property="article:tag" content="3D Content Generation">
   <meta property="article:tag" content="Texture Synthesis">
@@ -54,8 +54,16 @@
 
   <!-- Academic/Research Specific -->
   <meta name="citation_title" content="TexSpot">
-  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
-  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
+  <meta name="citation_author" content="Lu, Ziteng">
+  <meta name="citation_author" content="Wu, Yushuang">
+  <meta name="citation_author" content="Ye, Chongjie">
+  <meta name="citation_author" content="Qiu, Yuda">
+  <meta name="citation_author" content="Shao, Jing">
+  <meta name="citation_author" content="Guo, Xiaoyang">
+  <meta name="citation_author" content="Zhou, Jiaqing">
+  <meta name="citation_author" content="Hu, Tianlei">
+  <meta name="citation_author" content="Zhou, Kun">
+  <meta name="citation_author" content="Han, Xiaoguang">
   <meta name="citation_publication_date" content="2024">
   <meta name="citation_conference_title" content="CONFERENCE_NAME">
   <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
@@ -75,7 +83,7 @@
 
 
   <!-- TODO: Replace with your paper title and authors -->
-  <title>TexSpot - Anonymous Authors | Academic Research</title>
+  <title>TexSpot - Ziteng Lu et al. | Academic Research</title>
   
   <!-- Favicon and App Icons -->
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
@@ -118,14 +126,16 @@
     "headline": "TexSpot",
     "description": "High-quality 3D texture generation remains a fundamental challenge due to the view-inconsistency inherent in current mainstream multi-view diffusion pipelines. Existing representations either rely on UV maps, which suffer from distortion during unwrapping, or point-based methods, which tightly couple texture fidelity to geometric density that limits high-resolution texture generation. To address these limitations, we introduce TexSpot, a diffusion-based texture enhancement framework. At its core is Texlet, a novel 3D texture representation that merges the geometric expressiveness of point-based 3D textures with the compactness of UV-based representation. Each Texlet latent vector encodes a local texture patch via a 2D encoder and is further aggregated using a 3D encoder to incorporate global shape context. A cascaded 3D-to-2D decoder reconstructs high-quality texture patches, enabling the Texlet space learning. Leveraging this representation, we train a diffusion transformer conditioned on Texlets to refine and enhance textures produced by multi-view diffusion methods. Extensive experiments demonstrate that TexSpot significantly improves visual fidelity, geometric consistency, and robustness over existing state-of-the-art 3D texture generation and enhancement approaches.",
     "author": [
-      {
-        "@type": "Person",
-        "name": "Anonymous Authors",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      }
+      {"@type": "Person", "name": "Ziteng Lu", "identifier": "https://orcid.org/0009-0000-1884-8411", "affiliation": [{"@type": "Organization", "name": "SSE, CUHKSZ"}, {"@type": "Organization", "name": "ByteDance Games"}]},
+      {"@type": "Person", "name": "Yushuang Wu", "identifier": "https://orcid.org/0009-0002-9725-0606", "affiliation": {"@type": "Organization", "name": "ByteDance Games"}},
+      {"@type": "Person", "name": "Chongjie Ye", "identifier": "https://orcid.org/0000-0002-7123-0220", "affiliation": [{"@type": "Organization", "name": "FNii-Shenzhen"}, {"@type": "Organization", "name": "SSE, CUHKSZ"}]},
+      {"@type": "Person", "name": "Yuda Qiu", "identifier": "https://orcid.org/0009-0003-1257-4271", "affiliation": {"@type": "Organization", "name": "SSE, CUHKSZ"}},
+      {"@type": "Person", "name": "Jing Shao", "identifier": "https://orcid.org/0009-0007-3731-3958", "affiliation": {"@type": "Organization", "name": "SSE, CUHKSZ"}},
+      {"@type": "Person", "name": "Xiaoyang Guo", "identifier": "https://orcid.org/0009-0007-7613-5920", "affiliation": {"@type": "Organization", "name": "ByteDance Games"}},
+      {"@type": "Person", "name": "Jiaqing Zhou", "identifier": "https://orcid.org/0009-0008-6279-8501", "affiliation": {"@type": "Organization", "name": "ByteDance Games"}},
+      {"@type": "Person", "name": "Tianlei Hu", "identifier": "https://orcid.org/0000-0003-0744-6454", "affiliation": {"@type": "Organization", "name": "Zhejiang University"}},
+      {"@type": "Person", "name": "Kun Zhou", "identifier": "https://orcid.org/0000-0003-1726-4697", "affiliation": {"@type": "Organization", "name": "Shenzhen University"}},
+      {"@type": "Person", "name": "Xiaoguang Han", "identifier": "https://orcid.org/0000-0003-0162-3296", "affiliation": [{"@type": "Organization", "name": "SSE, CUHKSZ"}, {"@type": "Organization", "name": "FNii-Shenzhen"}, {"@type": "Organization", "name": "GenuX"}]}
     ],
     "datePublished": "2024-01-01",
     "publisher": {
@@ -190,16 +200,38 @@
             <!-- TODO: Replace with your paper title -->
             <h1 class="title is-1 publication-title">TexSpot: 3D Texture Enhancement with Spatially-uniform Point Latent Representation</h1>
             <div class="is-size-5 publication-authors">
-              <!-- TODO: Replace with your paper authors and their personal links -->
               <span class="author-block">
-                Anonymous Author(s)</span>
-                
+                <a href="https://orcid.org/0009-0000-1884-8411" target="_blank">Ziteng Lu</a><sup>1,2*</sup>,</span>
+              <span class="author-block">
+                <a href="https://orcid.org/0009-0002-9725-0606" target="_blank">Yushuang Wu</a><sup>2*</sup>,</span>
+              <span class="author-block">
+                <a href="https://github.com/hugoycj" target="_blank">Chongjie Ye</a><sup>3,1†</sup>,</span>
+              <span class="author-block">
+                <a href="https://orcid.org/0009-0003-1257-4271" target="_blank">Yuda Qiu</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://orcid.org/0009-0007-3731-3958" target="_blank">Jing Shao</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://orcid.org/0009-0007-7613-5920" target="_blank">Xiaoyang Guo</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="https://orcid.org/0009-0008-6279-8501" target="_blank">Jiaqing Zhou</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="https://orcid.org/0000-0003-0744-6454" target="_blank">Tianlei Hu</a><sup>4</sup>,</span>
+              <span class="author-block">
+                <a href="https://orcid.org/0000-0003-1726-4697" target="_blank">Kun Zhou</a><sup>5</sup>,</span>
+              <span class="author-block">
+                <a href="https://orcid.org/0000-0003-0162-3296" target="_blank">Xiaoguang Han</a><sup>1,3,6‡</sup></span>
+
                   </div>
 
                   <div class="is-size-5 publication-authors">
-                    <!-- TODO: Replace with your institution and conference/journal info -->
+                    <span class="author-block"><sup>1</sup>SSE, CUHKSZ</span>
+                    <span class="author-block"><sup>2</sup>ByteDance Games</span>
+                    <span class="author-block"><sup>3</sup>FNii-Shenzhen</span>
+                    <span class="author-block"><sup>4</sup>Zhejiang University</span>
+                    <span class="author-block"><sup>5</sup>Shenzhen University</span>
+                    <span class="author-block"><sup>6</sup>GenuX</span>
+                    <span class="eql-cntrb"><small><br><sup>*</sup>Equal contribution &nbsp; <sup>†</sup>Part of project lead &nbsp; <sup>‡</sup>Corresponding author</small></span>
 
-                    
                   </div>
 
                   <div class="column has-text-centered">
@@ -352,10 +384,9 @@
       </div>
       <pre id="bibtex-code"><code>@article{lu2026texspot,
   title={TexSpot: 3D Texture Enhancement with Spatially-uniform Point Latent Representation},
-  
-  journal={journal={arXiv preprint arXiv:XXXX.XXXXX}},
-  year={2026},
-
+  author={Lu, Ziteng and Wu, Yushuang and Ye, Chongjie and Qiu, Yuda and Shao, Jing and Guo, Xiaoyang and Zhou, Jiaqing and Hu, Tianlei and Zhou, Kun and Han, Xiaoguang},
+  journal={arXiv preprint arXiv:XXXX.XXXXX},
+  year={2026}
 }</code></pre>
     </div>
 </section> -->
