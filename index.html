@@ -27,9 +27,9 @@
   <!-- TODO: Replace with your actual website URL -->
   
   <!-- TODO: Create a 1200x630px preview image and update path -->
-  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image" content="https://texlet-arch.github.io/TexSpot-page/static/images/teaser_siga.jpg">
+  <meta property="og:image:width" content="2400">
+  <meta property="og:image:height" content="846">
   <meta property="og:image:alt" content="TexSpot - Research Preview">
   <meta property="article:published_time" content="2026-02-12T00:00:00.000Z">
   <meta property="article:author" content="Ziteng Lu, Yushuang Wu, Chongjie Ye, Yuda Qiu, Jing Shao, Xiaoyang Guo, Jiaqing Zhou, Tianlei Hu, Kun Zhou, Xiaoguang Han">
@@ -49,7 +49,7 @@
   <!-- TODO: Same as description above -->
   <meta name="twitter:description" content="High-quality 3D texture generation remains a fundamental challenge due to the view-inconsistency inherent in current mainstream multi-view diffusion pipelines. Existing representations either rely on UV maps, which suffer from distortion during unwrapping, or point-based methods, which tightly couple texture fidelity to geometric density that limits high-resolution texture generation. To address these limitations, we introduce TexSpot, a diffusion-based texture enhancement framework. At its core is Texlet, a novel 3D texture representation that merges the geometric expressiveness of point-based 3D textures with the compactness of UV-based representation. Each Texlet latent vector encodes a local texture patch via a 2D encoder and is further aggregated using a 3D encoder to incorporate global shape context. A cascaded 3D-to-2D decoder reconstructs high-quality texture patches, enabling the Texlet space learning. Leveraging this representation, we train a diffusion transformer conditioned on Texlets to refine and enhance textures produced by multi-view diffusion methods. Extensive experiments demonstrate that TexSpot significantly improves visual fidelity, geometric consistency, and robustness over existing state-of-the-art 3D texture generation and enhancement approaches.">
   <!-- TODO: Same as social preview image above -->
-  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
+  <meta name="twitter:image" content="https://texlet-arch.github.io/TexSpot-page/static/images/teaser_siga.jpg">
   <meta name="twitter:image:alt" content="TexSpot - Research Preview">
 
   <!-- Academic/Research Specific -->
@@ -145,7 +145,7 @@
       "name": "CONFERENCE_OR_JOURNAL_NAME"
     },
     
-    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
+    "image": "https://texlet-arch.github.io/TexSpot-page/static/images/teaser_siga.jpg",
     "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
     "abstract": "FULL_ABSTRACT_TEXT_HERE",
     "citation": "BIBTEX_CITATION_HERE",
@@ -270,10 +270,10 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <!-- TODO: Replace with your teaser video -->
-      <img src="static/images/teaser.jpg" alt="TexSpot Teaser" style="width:100%;">
+      <img src="static/images/teaser_siga.jpg" alt="TexSpot teaser: input textured models and their enhanced results with zoomed-in details" style="width:100%;">
       <!-- TODO: Replace with your video description -->
       <h2 class="subtitle has-text-centered">
-        TexSpot significantly improves visual fidelity, geometric consistency, and robustness over existing state-of-the-art 3D texture generation and enhancement approaches. 
+        Given an input 3D textured model, TexSpot effectively enhances the overall texture quality, producing visually plausible and high-fidelity textured results.
       </h2>
     </div>
   </div>
@@ -303,38 +303,45 @@
   <div class="hero-body">
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- TODO: Replace with your research result images -->
-        <img src="static/images/vae.jpg" alt="First research result visualization" loading="lazy"/>
-        <!-- TODO: Replace with description of this result -->
-        <h2 class="subtitle has-text-centered">
-          Visualization of texture reconstruction results by our VAE, with comparisons with ground truth (input) textures.
-        </h2>
+        <div class="item">
+          <img src="static/images/vae.jpg" alt="VAE reconstruction results compared with ground-truth textures" loading="lazy"/>
+          <h2 class="subtitle has-text-centered">
+            Visualization of texture reconstruction results by our VAE, with comparisons with ground truth (input) textures.
+          </h2>
+        </div>
+        <div class="item">
+          <img src="static/images/comp_sr.jpg" alt="Qualitative comparison with state-of-the-art 3D texture super-resolution methods" loading="lazy"/>
+          <h2 class="subtitle has-text-centered">
+            Qualitative comparison with state-of-the-art methods on 3D texture super-resolution. TexSpot achieves the best texture quality and global consistency. PBR-SR shown here is our re-implemented version.
+          </h2>
+        </div>
+        <div class="item">
+          <img src="static/images/inthewild_commercial.jpg" alt="Texture enhancement on meshes generated by commercial models" loading="lazy"/>
+          <h2 class="subtitle has-text-centered">
+            Texture enhancement results for textured 3D meshes generated by commercial models.
+          </h2>
+        </div>
+        <div class="item">
+          <img src="static/images/recon_sr.jpg" alt="Texture enhancement on reconstructed scanned objects and scenes" loading="lazy"/>
+          <h2 class="subtitle has-text-centered">
+            Texture enhancement results for reconstructed textures.
+          </h2>
+        </div>
+        <div class="item">
+          <img src="static/images/mv_diff.jpg" alt="Texture enhancement on multi-view diffusion results" loading="lazy"/>
+          <h2 class="subtitle has-text-centered">
+            Texture enhancement on multi-view diffusion results. TexSpot improves mild or local artifacts while significantly enhancing local texture fidelity.
+          </h2>
+        </div>
+        <div class="item">
+          <img src="static/images/ablation_consistency.jpg" alt="Ablation of seamless constraints" loading="lazy"/>
+          <h2 class="subtitle has-text-centered">
+            Effectiveness of seamless constraints. (a) Baseline; (b) w/ consistency loss; (c) w/ seamless integration; (d) full pipeline, delivering high-fidelity, globally continuous textures.
+          </h2>
+        </div>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/lr_comp_1.jpg" alt="Second research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          The qualitative results of comparison with the state-of-the-art methods in the task of 3D texture super resolution. Our TexSpot achieves the best performance in texture quality and global consistency. PBR-SR presented here is the re-implemented version by us.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/inthewild.jpg" alt="Third research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-         Texture Enhancement result for generated textured 3D mesh.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/scan_obj.jpg" alt="Fourth research result visualization" loading="lazy"/>
-      <h2 class="subtitle has-text-centered">
-        Texture enhancement visualization of our TexSpot for scanned meshes of objects or scenes.
-      </h2>
     </div>
   </div>
-</div>
-</div>
 </section>
 <!-- End image carousel -->
 
@@ -370,7 +377,7 @@
         <h2 class="title is-3">Methodology</h2>
         
         <div class="publication-img">
-          <img src="static/images/pipeline.jpg" alt="TexSpot Method Pipeline" style="width:100%;">
+          <img src="static/images/pipeline_siga.jpg" alt="TexSpot pipeline: texture partition, Texlet VAE, and texture enhancement DiT" style="width:100%;">
         </div>
         
         <div class="content has-text-justified">
