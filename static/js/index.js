@@ -119,8 +119,8 @@ function setupVideoCarouselAutoplay() {
     });
 }
 
-$(document).ready(function() {
-    // Check for click events on the navbar burger icon
+// Initialize without depending on jQuery (CDN may be blocked in some regions)
+function initPage() {
 
     var options = {
 		slidesToScroll: 1,
@@ -138,5 +138,10 @@ $(document).ready(function() {
     
     // Setup video autoplay for carousel
     setupVideoCarouselAutoplay();
+}
 
-})
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPage);
+} else {
+    initPage();
+}
