@@ -120,9 +120,10 @@ function setupVideoCarouselAutoplay() {
 }
 
 // Lightweight results carousel: arrows, dots, keyboard, swipe, autoplay.
-// Autoplay keeps running while the user is idle; any manual navigation
-// restarts the timer so the next auto-advance happens a full interval later.
-function setupResultsCarousel(root, interval) {
+// Autoplay advances every `interval` ms while the user is idle. Any manual
+// navigation delays the next auto-advance by `idleDelay` ms; another manual
+// action within that window restarts the full `idleDelay` wait.
+function setupResultsCarousel(root, interval, idleDelay) {
     const items = Array.from(root.querySelectorAll(':scope > .item'));
     if (items.length === 0) return;
 
@@ -156,7 +157,7 @@ function setupResultsCarousel(root, interval) {
         d.type = 'button';
         d.className = 'carousel-dot';
         d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-        d.addEventListener('click', () => { goTo(i); restart(); });
+        d.addEventListener('click', () => { goTo(i); userActed(); });
         dotsWrap.appendChild(d);
         return d;
     });
@@ -178,21 +179,29 @@ function setupResultsCarousel(root, interval) {
     }
 
     function stop() {
-        if (timer) { clearInterval(timer); timer = null; }
+        if (timer) { clearTimeout(timer); timer = null; }
     }
-    function start() {
+    // Schedule the next auto-advance after `delay`; subsequent ones use `interval`.
+    function schedule(delay) {
         stop();
-        if (!document.hidden) timer = setInterval(() => goTo(index + 1), interval);
+        if (document.hidden) return;
+        timer = setTimeout(() => {
+            goTo(index + 1);
+            schedule(interval);
+        }, delay);
     }
-    const restart = start;
+    // Manual navigation: wait the longer idle delay before resuming autoplay.
+    function userActed() {
+        schedule(idleDelay);
+    }
 
-    prevBtn.addEventListener('click', () => { goTo(index - 1); restart(); });
-    nextBtn.addEventListener('click', () => { goTo(index + 1); restart(); });
+    prevBtn.addEventListener('click', () => { goTo(index - 1); userActed(); });
+    nextBtn.addEventListener('click', () => { goTo(index + 1); userActed(); });
 
     root.setAttribute('tabindex', '0');
     root.addEventListener('keydown', e => {
-        if (e.key === 'ArrowLeft') { goTo(index - 1); restart(); }
-        else if (e.key === 'ArrowRight') { goTo(index + 1); restart(); }
+        if (e.key === 'ArrowLeft') { goTo(index - 1); userActed(); }
+        else if (e.key === 'ArrowRight') { goTo(index + 1); userActed(); }
     });
 
     // Touch swipe
@@ -204,21 +213,21 @@ function setupResultsCarousel(root, interval) {
             if (Math.abs(dx) > 40) goTo(index + (dx < 0 ? 1 : -1));
         }
         startX = null;
-        restart();
+        userActed();
     });
 
     // Pause when the tab is hidden, resume when visible
-    document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); });
+    document.addEventListener('visibilitychange', () => { document.hidden ? stop() : schedule(interval); });
 
     goTo(0);
-    start();
+    schedule(interval);
 }
 
 // Initialize without depending on jQuery (CDN may be blocked in some regions)
 function initPage() {
 
     document.querySelectorAll('.results-carousel').forEach(function (el) {
-        setupResultsCarousel(el, 5000);
+        setupResultsCarousel(el, 5000, 15000);
     });
 
     if (typeof bulmaSlider !== 'undefined') {
