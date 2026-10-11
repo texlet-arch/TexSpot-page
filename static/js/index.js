@@ -119,22 +119,111 @@ function setupVideoCarouselAutoplay() {
     });
 }
 
+// Lightweight results carousel: arrows, dots, keyboard, swipe, autoplay.
+// Autoplay keeps running while the user is idle; any manual navigation
+// restarts the timer so the next auto-advance happens a full interval later.
+function setupResultsCarousel(root, interval) {
+    const items = Array.from(root.querySelectorAll(':scope > .item'));
+    if (items.length === 0) return;
+
+    // Build DOM: viewport > track > items
+    const viewport = document.createElement('div');
+    viewport.className = 'carousel-viewport';
+    const track = document.createElement('div');
+    track.className = 'carousel-track';
+    items.forEach(item => track.appendChild(item));
+    viewport.appendChild(track);
+    root.appendChild(viewport);
+
+    const icon = dir => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="' +
+        (dir === 'prev' ? '15 18 9 12 15 6' : '9 18 15 12 9 6') + '"/></svg>';
+    const makeArrow = (dir, label) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'carousel-arrow ' + dir;
+        b.setAttribute('aria-label', label);
+        b.innerHTML = icon(dir);
+        root.appendChild(b);
+        return b;
+    };
+    const prevBtn = makeArrow('prev', 'Previous slide');
+    const nextBtn = makeArrow('next', 'Next slide');
+
+    const dotsWrap = document.createElement('div');
+    dotsWrap.className = 'carousel-dots';
+    const dots = items.map((_, i) => {
+        const d = document.createElement('button');
+        d.type = 'button';
+        d.className = 'carousel-dot';
+        d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        d.addEventListener('click', () => { goTo(i); restart(); });
+        dotsWrap.appendChild(d);
+        return d;
+    });
+    root.appendChild(dotsWrap);
+
+    let index = 0;
+    let timer = null;
+
+    function goTo(i) {
+        index = (i + items.length) % items.length;
+        track.style.transform = 'translateX(' + (-100 * index) + '%)';
+        dots.forEach((d, k) => {
+            const active = k === index;
+            d.classList.toggle('is-active', active);
+            if (active) d.setAttribute('aria-current', 'true');
+            else d.removeAttribute('aria-current');
+        });
+        items.forEach((it, k) => it.setAttribute('aria-hidden', k === index ? 'false' : 'true'));
+    }
+
+    function stop() {
+        if (timer) { clearInterval(timer); timer = null; }
+    }
+    function start() {
+        stop();
+        if (!document.hidden) timer = setInterval(() => goTo(index + 1), interval);
+    }
+    const restart = start;
+
+    prevBtn.addEventListener('click', () => { goTo(index - 1); restart(); });
+    nextBtn.addEventListener('click', () => { goTo(index + 1); restart(); });
+
+    root.setAttribute('tabindex', '0');
+    root.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft') { goTo(index - 1); restart(); }
+        else if (e.key === 'ArrowRight') { goTo(index + 1); restart(); }
+    });
+
+    // Touch swipe
+    let startX = null;
+    viewport.addEventListener('touchstart', e => { startX = e.touches[0].clientX; stop(); }, { passive: true });
+    viewport.addEventListener('touchend', e => {
+        if (startX !== null) {
+            const dx = e.changedTouches[0].clientX - startX;
+            if (Math.abs(dx) > 40) goTo(index + (dx < 0 ? 1 : -1));
+        }
+        startX = null;
+        restart();
+    });
+
+    // Pause when the tab is hidden, resume when visible
+    document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); });
+
+    goTo(0);
+    start();
+}
+
 // Initialize without depending on jQuery (CDN may be blocked in some regions)
 function initPage() {
 
-    var options = {
-		slidesToScroll: 1,
-		slidesToShow: 1,
-		loop: true,
-		infinite: true,
-		autoplay: true,
-		autoplaySpeed: 5000,
-    }
+    document.querySelectorAll('.results-carousel').forEach(function (el) {
+        setupResultsCarousel(el, 5000);
+    });
 
-	// Initialize all div with carousel class
-    var carousels = bulmaCarousel.attach('.carousel', options);
-	
-    bulmaSlider.attach();
+    if (typeof bulmaSlider !== 'undefined') {
+        bulmaSlider.attach();
+    }
     
     // Setup video autoplay for carousel
     setupVideoCarouselAutoplay();
