@@ -141,8 +141,14 @@ body {
   border-radius: var(--border-radius-lg);
 }
 
-.publication-header .hero-body {
-  padding: 6rem 1.5rem 4rem;
+.publication-header .hero-body,
+section.hero > .hero-body {
+  padding: 6rem 1.5rem 2rem;
+}
+
+section.hero.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
 }
 
 .publication-authors {
